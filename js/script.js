@@ -43,16 +43,39 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(locations => {
         const locationContainer = document.getElementById("locations");
+
         if (locations.length === 0) {
           locationContainer.innerHTML = `<p><strong>Found in:</strong> Not available in the wild.</p>`;
-        } else {
-          const locationList = locations
-            .map(loc => `<li>${loc.location_area.name.replace(/-/g, " ")}</li>`)
-            .join("");
-          locationContainer.innerHTML = `
-            <p><strong>Found in:</strong></p>
-            <ul>${locationList}</ul>
-          `;
+          return;
+        }
+
+        // Group locations by game version
+        const versionMap = {};
+        locations.forEach(loc => {
+          loc.version_details.forEach(v => {
+            const version = v.version.name;
+            if (!versionMap[version]) versionMap[version] = new Set();
+            versionMap[version].add(loc.location_area.name.replace(/-/g, " "));
+          });
+        });
+
+        // Create collapsible UI
+        locationContainer.innerHTML = `<p><strong>Found in:</strong></p>`;
+        for (const version in versionMap) {
+          const details = document.createElement("details");
+          const summary = document.createElement("summary");
+          summary.textContent = version.toUpperCase();
+          details.appendChild(summary);
+
+          const ul = document.createElement("ul");
+          [...versionMap[version]].forEach(location => {
+            const li = document.createElement("li");
+            li.textContent = location;
+            ul.appendChild(li);
+          });
+
+          details.appendChild(ul);
+          locationContainer.appendChild(details);
         }
       })
       .catch(error => {
