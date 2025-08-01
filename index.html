@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokémon Info Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script> <!-- Defer JS until after DOM loads -->
+</head>
+<body>
+  <main>
+    <h1>Pokémon Search</h1>
+    <p>Enter a Pokémon name or ID below to get its info from the <a href="https://pokeapi.co/" target="_blank">PokéAPI</a>.</p>
+
+    <input type="text" id="pokeInput" placeholder="e.g. pikachu or 25" />
+    <button id="searchBtn">Search</button>
+
+    <div id="pokeCard" class="card"></div>
+  </main>
+
+  <footer>
+    <p>API provided by <a href="https://pokeapi.co/docs/v2" target="_blank">PokéAPI Docs</a>.</p>
+  </footer>
+</body>
+</html>
