@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const imgSrc = pokemon.sprites.front_default;
         const shinyImgSrc = pokemon.sprites.front_shiny;
         const types = pokemon.types.map(t => t.type.name).join(", ");
-        const height = pokemon.height;
-        const weight = pokemon.weight;
+        const height = (pokemon.height / 10).toFixed(1); // in meters
+        const weight = (pokemon.weight / 10).toFixed(1); // in kilograms
         const encounterUrl = pokemon.location_area_encounters;
 
         // Display basic info immediately
@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
   <p><strong>Type:</strong> ${types}</p>
-  <p><strong>Height:</strong> ${height}</p>
-  <p><strong>Weight:</strong> ${weight}</p>
+  <p><strong>Height:</strong> ${height} m</p>
+  <p><strong>Weight:</strong> ${weight} kg</p>
   <div id="locations"><p><em>Loading locations...</em></p></div>
 `;
 
