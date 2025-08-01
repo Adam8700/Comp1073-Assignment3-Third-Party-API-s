@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Extract data
         const name = pokemon.name;
         const imgSrc = pokemon.sprites.front_default;
+        const shinyImgSrc = pokemon.sprites.front_shiny;
         const types = pokemon.types.map(t => t.type.name).join(", ");
         const height = pokemon.height;
         const weight = pokemon.weight;
@@ -29,13 +30,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Display basic info immediately
         pokeCard.innerHTML = `
-          <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
-          <img src="${imgSrc}" alt="${name}">
-          <p><strong>Type:</strong> ${types}</p>
-          <p><strong>Height:</strong> ${height}</p>
-          <p><strong>Weight:</strong> ${weight}</p>
-          <div id="locations"><p><em>Loading locations...</em></p></div>
-        `;
+  <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
+  <div class="sprite-row">
+    <div>
+      <p><strong>Normal</strong></p>
+      <img src="${imgSrc}" alt="${name}">
+    </div>
+    <div>
+      <p><strong>Shiny</strong></p>
+      <img src="${shinyImgSrc}" alt="Shiny ${name}">
+    </div>
+  </div>
+  <p><strong>Type:</strong> ${types}</p>
+  <p><strong>Height:</strong> ${height}</p>
+  <p><strong>Weight:</strong> ${weight}</p>
+  <div id="locations"><p><em>Loading locations...</em></p></div>
+`;
 
         // Second fetch: Encounter locations
         return fetch(encounterUrl);
