@@ -7,6 +7,27 @@ body {
   text-align: center;
 }
 
+header {
+  background-color: #cc0000; /* Pokémon red */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #990000;
+  margin-bottom: 20px;
+}
+
+header .logo {
+  width: 60px;
+  vertical-align: middle;
+}
+
+header h1 {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 2rem;
+  vertical-align: middle;
+}
+
 main {
   max-width: 700px;
   margin: 0 auto;
